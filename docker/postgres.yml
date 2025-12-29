@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: pgvector/pgvector:pg15
+    container_name: ai_postgres
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_DB: ai_content
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
