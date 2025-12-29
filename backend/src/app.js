@@ -9,6 +9,9 @@ import { apiLimiter } from "./utils/rateLimiter.js";
 
 const app = express();
 
+// Trust the Render proxy for rate limiting to work correctly
+app.set("trust proxy", 1);
+
 app.use(cors({
     origin: (origin, callback) => {
         const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:5173"].filter(Boolean);
