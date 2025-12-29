@@ -77,7 +77,7 @@ Traditional keyword-based search systems often fail to capture the intent behind
 
 For technical queries, feature requests, or collaboration opportunities, please contact:
 
-**Adharsh**  
+**Adharsh P Ajayakumar**  
 adharshajay55@gmail.com
 
 ---
