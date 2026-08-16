@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, cloneElement } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Database, Layers, BrainCircuit, Github, MessageSquare, Search, Sparkles } from "lucide-react";
 import { searchContent } from "../api/client";
@@ -188,5 +188,3 @@ function NavItem({ icon, label, value, active }) {
     );
 }
 
-// Minimal cloneElement polyfill if needed or just use regular components
-import { cloneElement } from "react";

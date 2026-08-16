@@ -6,18 +6,21 @@ if (!apiKey) {
 }
 
 export const genAI = new GoogleGenerativeAI(apiKey);
-const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+const model = genAI.getGenerativeModel({ model: "gemini-embedding-001" });
 
 export const generateEmbedding = async (text) => {
   // Production systems must not wait indefinitely for external APIs.
-  // We use Promise.race to implement a strict 5s timeout.
+  // We use Promise.race to implement a strict timeout.
   const timeoutPromise = new Promise((_, reject) =>
     setTimeout(() => reject(new Error("Embedding service timed out")), 10000)
   );
 
   try {
     const result = await Promise.race([
-      model.embedContent(text),
+      model.embedContent({
+        content: { parts: [{ text }] },
+        outputDimensionality: 768
+      }),
       timeoutPromise
     ]);
 

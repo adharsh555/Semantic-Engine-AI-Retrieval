@@ -1,8 +1,10 @@
 import "dotenv/config";
+import fs from "fs";
+import path from "path";
 import { createContent } from "./src/services/contentService.js";
 import pool from "./src/config/db.js";
 
-// Configuration already handled by import "dotenv/config"
+const schemaSql = fs.readFileSync(path.join(process.cwd(), "src/db/schema/001_create_contents.sql"), "utf8");
 
 const sampleData = [
     {
@@ -29,6 +31,8 @@ const sampleData = [
 
 async function seed() {
     try {
+        console.log("⚡ Ensuring database schema...");
+        await pool.query(schemaSql);
         console.log("🌱 Seeding database with sample content...");
         for (const item of sampleData) {
             const result = await createContent(item);
